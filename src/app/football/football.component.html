@@ -1,1 +1,59 @@
-<p>football works!</p>
+
+<div class="row">
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose an country</mat-label>
+            <mat-select (selectionChange)='onCountrySelected()' [(ngModel)]="selectedCountry" name="country">
+              <mat-option *ngFor="let country of countries" [value]="country.country_id">{{country.country_name}}</mat-option>
+          
+            </mat-select>
+          </mat-form-field>
+    </div>
+    
+      <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose an league</mat-label>
+            <mat-select (selectionChange)='onLeagueSelected()' [(ngModel)]="selectedLeague" name="league">
+              <mat-option *ngFor="let league of leagues" [value]="league.league_id">{{league.league_name}}</mat-option>
+          
+            </mat-select>
+          </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose an team</mat-label>
+            <mat-select (selectionChange)='onTeamSelected()' [(ngModel)]="selectedTeam" name="team">
+              <mat-option *ngFor="let team of teams" [value]="team.team_key">{{team.team_name}}</mat-option>
+          
+            </mat-select>
+          </mat-form-field>
+      </div>
+    
+  </div>
+  <div class="row"><br></div>
+
+  <div class="row">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Team</th>
+          <th scope="col">League</th>
+          <th scope="col">Country</th>
+          <th scope="col">Position</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let standing of standings; index as i">
+          <!-- <th scope="row">{{ i + 1 }}</th> -->
+          <td>
+            <img [src]="standing.team_badge" class="mr-2" style="width: 20px">
+            {{ standing.team_name }}
+          </td>
+          <td>{{ standing.league_name }}</td>
+          <td>{{ standing.country_name }}</td>
+          <td>{{ standing.overall_league_position}}</td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
